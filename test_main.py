@@ -1,8 +1,10 @@
 from csv import DictReader
+from typing import List
 
 import pytest
 
 from main import normalise_transactions, get_total_income
+from models import Transaction
 
 
 @pytest.fixture
@@ -17,7 +19,7 @@ def test_normalise_transactions(transactions):
 
 
 def test_get_total_income():
-    transactions = [
+    transactions: List[Transaction] = [
         {'amount': '700.00', 'category': 'Salary'},
         {'amount': '100.00', 'category': 'Capital Gains'},
         {'amount': '-100.0', 'category': 'Shopping'},

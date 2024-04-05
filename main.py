@@ -1,15 +1,16 @@
-from typing import Any, Dict, Union
+from typing import List, Dict, Union
+from models import Transaction
 
 
 def normalise_transactions(transactions):
     pass
 
 
-def get_total_income(transactions: Dict[str, Any]) -> Dict[str, Union[float, int]]:
-    """Get total of and number of positive transaction amounts.
-    
+def get_total_income(transactions: List[Transaction]) -> Dict[str, Union[float, int]]:
+    """Get sum of and number of positive transaction amounts.
+
     Args:
-        transactions (Dict[str, Any]): Dictionary object holding transaction data
+        transactions (List[Transaction]): List of transaction dictionaries
 
     Returns:
         Dictionary object holding total income and number of transactions
@@ -19,7 +20,6 @@ def get_total_income(transactions: Dict[str, Any]) -> Dict[str, Union[float, int
 
     for transaction in transactions:
         amount = float(transaction['amount'])
-
         if amount > 0:
             total_income += amount
             num_transactions += 1
