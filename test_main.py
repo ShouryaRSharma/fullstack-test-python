@@ -1,7 +1,7 @@
 from csv import DictReader
 import pytest
 
-from main import normalise_transactions, get_total_amount
+from main import normalise_transactions, get_total_amount, get_spending_by_category
 
 
 @pytest.fixture
@@ -27,3 +27,9 @@ def test_get_total_amount():
     assert result['total_spending'] == -150.0
     assert result['num_income_transactions'] == 2
     assert result['num_spending_transactions'] == 2
+
+
+def test_get_spending_by_category():
+    transaction = {'amount': '-50.0', 'category': 'Shopping'}
+    result = get_spending_by_category(transaction, {})
+    assert result['Shopping'] == {'amount': -50.0, 'count': 1}

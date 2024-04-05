@@ -35,3 +35,7 @@ def get_total_amount(transactions: List[Transaction]) -> Dict[str, Union[float, 
         'num_income_transactions': num_income_transactions,
         'num_spending_transactions': num_spending_transactions
     }
+
+
+def get_spending_by_category(transaction: Transaction, category_dict: Dict[str, Dict[str, Union[float, int]]]):
+    pass
