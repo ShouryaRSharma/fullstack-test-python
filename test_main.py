@@ -1,10 +1,7 @@
 from csv import DictReader
-from typing import List
-
 import pytest
 
-from main import normalise_transactions, get_total_income, get_total_spending
-from models import Transaction
+from main import normalise_transactions, get_total_amount
 
 
 @pytest.fixture
@@ -18,23 +15,15 @@ def test_normalise_transactions(transactions):
     pass
 
 
-def test_get_total_income():
-    transactions: List[Transaction] = [
-        {'amount': '700.00', 'category': 'Salary'},
-        {'amount': '100.00', 'category': 'Capital Gains'},
-        {'amount': '-100.0', 'category': 'Shopping'},
-    ]
-    result = get_total_income(transactions)
-    assert result['total_income'] == 800.00
-    assert result['num_transactions'] == 2
-
-
-def test_get_total_spending():
+def test_get_total_amount():
     transactions = [
-        {'amount': '-10.00', 'category': 'Shopping'},
-        {'amount': '700.00', 'category': 'Salary'},
-        {'amount': '-25.00', 'category': 'Bills and Utilities'},
+        {'amount': '1500.0', 'category': 'Salary', 'description': 'ABC Company Salary'},
+        {'amount': '-100.0', 'category': 'Shopping', 'description': 'Grocery Shopping'},
+        {'amount': '200.0', 'category': 'Other Income', 'description': 'Freelance Work'},
+        {'amount': '-50.0', 'category': 'Bills', 'description': 'Electricity Bill'},
     ]
-    result = get_total_spending(transactions)
-    assert result['total_spending'] == -35.00
-    assert result['num_transactions'] == 2
+    result = get_total_amount(transactions)
+    assert result['total_income'] == 1700.0
+    assert result['total_spending'] == -150.0
+    assert result['num_income_transactions'] == 2
+    assert result['num_spending_transactions'] == 2
