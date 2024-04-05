@@ -64,4 +64,14 @@ def get_income_by_payer_for_salary(
     transaction: Transaction,
     category_dict: Dict[str, CategoryInfo]
 ) -> Dict[str, CategoryInfo]:
-    pass
+    amount = float(transaction['amount'])
+    category = transaction['category']
+    description = transaction['description']
+
+    if amount > 0 and category == 'Salary':
+        if description not in category_dict:
+            category_dict[description] = {'amount': 0.0, 'count': 0}
+        category_dict[description]['amount'] += amount
+        category_dict[description]['count'] += 1
+    
+    return category_dict

@@ -36,6 +36,6 @@ def test_get_spending_by_category():
 
 
 def test_get_income_by_payer_for_salary():
-    transaction = {'amount': '1500.00', 'category': 'Salary', 'description': 'WEB GENIUS'},
+    transaction = {'amount': '1500.00', 'category': 'Salary', 'description': 'WEB GENIUS'}
     result = get_income_by_payer_for_salary(transaction, {})
     assert result['WEB GENIUS'] == {'amount': 1500.0, 'count': 1}
