@@ -1,5 +1,4 @@
 from csv import DictReader
-from decimal import Decimal
 import pytest
 
 from main import normalise_transactions, get_spending_by_category, get_income_by_payer_for_salary
