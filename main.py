@@ -65,6 +65,15 @@ def get_income_by_payer_for_salary(
     transaction: Transaction,
     salary_dict: Dict[str, CategoryInfo]
 ) -> Dict[str, CategoryInfo]:
+    """Get salary info per payer and update salary dictionary with count.
+    
+    Args:
+        transaction (Transaction): Transaction from which we get salary info
+        salary_dict (Dict[str, CategoryInfo]): Dictionary to hold salary by payer
+
+    Returns:
+        Updated salary dict with new amount and count number
+    """
     amount = float(transaction['amount'])
     description = transaction['description']
 
