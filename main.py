@@ -1,5 +1,5 @@
 from typing import List, Dict, Union
-from models import Transaction
+from models import Transaction, CategoryInfo
 
 
 def normalise_transactions(transactions):
@@ -37,5 +37,25 @@ def get_total_amount(transactions: List[Transaction]) -> Dict[str, Union[float, 
     }
 
 
-def get_spending_by_category(transaction: Transaction, category_dict: Dict[str, Dict[str, Union[float, int]]]):
-    pass
+def get_spending_by_category(
+    transaction: Transaction, 
+    category_dict: Dict[str, CategoryInfo]
+) -> Dict[str, CategoryInfo]:
+    """Get spending info for transaction and update category dictionary with count.
+    
+    Args:
+        transaction (Transaction): Transaction from which we get spending info
+        category_dict (Dict[str, CategoryInfo]): Dictionary to hold spending by category info
+
+    Returns:
+        Updated category dict with new amount and count number
+    """
+    amount = float(transaction['amount'])
+    category = transaction['category']
+
+    if category not in category_dict:
+        category_dict[category] = {'amount': 0.0, 'count': 0}
+    category_dict[category]['amount'] += amount
+    category_dict[category]['count'] += 1
+
+    return category_dict

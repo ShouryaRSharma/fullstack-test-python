@@ -10,3 +10,8 @@ class Transaction(TypedDict):
     currency_code: str
     category: str
     date: str
+
+
+class CategoryInfo(TypedDict):
+    amount: float
+    count: int
