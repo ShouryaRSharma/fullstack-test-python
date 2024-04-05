@@ -28,3 +28,15 @@ def get_total_income(transactions: List[Transaction]) -> Dict[str, Union[float, 
         'total_income': total_income,
         'num_transactions': num_transactions
     }
+
+
+def get_total_spending(transactions: List[Transaction]) -> Dict[str, Union[float, int]]:
+    """Get sum of and number of negative transaction amounts.
+
+    Args:
+        transactions (List[Transaction]): List of transaction dictionaries
+
+    Returns:
+        Dictionary object holding total spending and number of transactions
+    """
+    pass
