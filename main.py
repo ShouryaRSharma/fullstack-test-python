@@ -59,3 +59,9 @@ def get_spending_by_category(
     category_dict[category]['count'] += 1
 
     return category_dict
+
+def get_income_by_payer_for_salary(
+    transaction: Transaction,
+    category_dict: Dict[str, CategoryInfo]
+) -> Dict[str, CategoryInfo]:
+    pass

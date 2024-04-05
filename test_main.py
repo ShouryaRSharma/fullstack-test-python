@@ -1,7 +1,7 @@
 from csv import DictReader
 import pytest
 
-from main import normalise_transactions, get_total_amount, get_spending_by_category
+from main import normalise_transactions, get_total_amount, get_spending_by_category, get_income_by_payer_for_salary
 
 
 @pytest.fixture
@@ -33,3 +33,9 @@ def test_get_spending_by_category():
     transaction = {'amount': '-50.0', 'category': 'Shopping'}
     result = get_spending_by_category(transaction, {})
     assert result['Shopping'] == {'amount': -50.0, 'count': 1}
+
+
+def test_get_income_by_payer_for_salary():
+    transaction = {'amount': '1500.00', 'category': 'Salary', 'description': 'WEB GENIUS'},
+    result = get_income_by_payer_for_salary(transaction, {})
+    assert result['WEB GENIUS'] == {'amount': 1500.0, 'count': 1}
