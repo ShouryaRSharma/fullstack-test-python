@@ -60,18 +60,17 @@ def get_spending_by_category(
 
     return category_dict
 
+
 def get_income_by_payer_for_salary(
     transaction: Transaction,
-    category_dict: Dict[str, CategoryInfo]
+    salary_dict: Dict[str, CategoryInfo]
 ) -> Dict[str, CategoryInfo]:
     amount = float(transaction['amount'])
-    category = transaction['category']
     description = transaction['description']
 
-    if amount > 0 and category == 'Salary':
-        if description not in category_dict:
-            category_dict[description] = {'amount': 0.0, 'count': 0}
-        category_dict[description]['amount'] += amount
-        category_dict[description]['count'] += 1
+    if description not in salary_dict:
+        salary_dict[description] = {'amount': 0.0, 'count': 0}
+    salary_dict[description]['amount'] += amount
+    salary_dict[description]['count'] += 1
     
-    return category_dict
+    return salary_dict
