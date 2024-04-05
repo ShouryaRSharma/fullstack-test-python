@@ -14,4 +14,17 @@ def get_total_income(transactions: Dict[str, Any]) -> Dict[str, Union[float, int
     Returns:
         Dictionary object holding total income and number of transactions
     """
-    pass
+    total_income = 0.0
+    num_transactions = 0
+
+    for transaction in transactions:
+        amount = float(transaction['amount'])
+
+        if amount > 0:
+            total_income += amount
+            num_transactions += 1
+
+    return {
+        'total_income': total_income,
+        'num_transactions': num_transactions
+    }
